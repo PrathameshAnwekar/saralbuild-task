@@ -42,10 +42,12 @@ class _UserListScreenState extends State<UserListScreen> {
             List firstNames = [];
             List lastNames = [];
             List imageURLs = [];
+            List emails = [];
             result.forEach((element) {
               firstNames.add(element['first_name']);
               lastNames.add(element['last_name']);
               imageURLs.add(element['avatar']);
+              emails.add(element['email']);
             });
 
             return SizedBox(
@@ -54,10 +56,9 @@ class _UserListScreenState extends State<UserListScreen> {
                   itemCount: firstNames.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      padding: const EdgeInsets.all(8.0),
-                      child:
-                         ListTile(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
                           contentPadding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                           tileColor: Colors.grey[900],
                           focusColor: Colors.grey[700],
@@ -67,6 +68,7 @@ class _UserListScreenState extends State<UserListScreen> {
                                   ? AssetImage('assets/genericProfilePic.jpeg')
                                       as ImageProvider
                                   : NetworkImage(imageURLs[index])),
+                          subtitle: Text('${emails[index]}', style: TextStyle(color: Colors.white),),
                           trailing: Container(
                             padding: EdgeInsets.all(3),
                             width: MediaQuery.of(context).size.width * 0.25,
@@ -91,9 +93,7 @@ class _UserListScreenState extends State<UserListScreen> {
                             '${firstNames[index]} ${lastNames[index]}',
                             style: TextStyle(color: Colors.white),
                           ),
-                        )
-                      
-                    );
+                        ));
                   }),
             );
           }),
