@@ -99,7 +99,7 @@ class _UserListScreenState extends State<UserListScreen> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed(NewUserScreen.routeName);
+          Navigator.of(context).pushReplacementNamed(NewUserScreen.routeName);
         },
       ),
     );
